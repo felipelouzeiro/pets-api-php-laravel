@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\SinglePetAdoption;
+use App\Http\Requests;
 
 class AdocaoRequest extends FormRequest
 {
@@ -24,7 +26,7 @@ class AdocaoRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', new SinglePetAdoption($this ->input('pet_id', 0))],
             'donation' => ['required', 'numeric', 'between:10,100'],
             'pet_id' => ['required', 'int', 'exists:pets,id'],
         ];
