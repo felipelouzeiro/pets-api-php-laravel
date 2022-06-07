@@ -11,4 +11,14 @@ class Adocao extends Model
 
     protected $table = 'adocoes';
     protected $fillable = ['email', 'donation', 'pet_id'];
+
+    /**
+     * Define a relação de Adoção com Pet
+     *
+     * @return belongsTo
+     */
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class);
+    }
 }
