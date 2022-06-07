@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Adocao;
 use Illuminate\Http\Request;
 use App\Http\Requests\AdocaoRequest;
+use App\Http\Resources\AdocaoCollection;
 
 class AdocaoController extends Controller
 /**
@@ -21,7 +22,8 @@ class AdocaoController extends Controller
      */
     public function index()
     {
-        return Adocao::with('pet')->get();
+        $adocoes = Adocao::with('pet')->get();
+        return new AdocaoCollection($adocoes);
     }
 
     public function store(AdocaoRequest $request)
