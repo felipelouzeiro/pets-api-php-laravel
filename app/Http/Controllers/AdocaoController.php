@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adocao;
 use Illuminate\Http\Request;
 
 class AdocaoController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
-        echo 'controller adoção';
+        $adoptionData = $request->all();
+
+        return Adocao::create($adoptionData);
     }
 }
